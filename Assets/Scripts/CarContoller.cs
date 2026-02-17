@@ -3,8 +3,14 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
     // Brzine
-    public float moveSpeed = 5f;      // Brzina napred/nazad
-    public float rotationSpeed = 200f; // Brzina rotacije
+    public float moveSpeed = 8f;      // Brzina napred/nazad
+    public float rotationSpeed = 180f; // Brzina rotacije
+
+
+    public KeyCode forwardKey = KeyCode.UpArrow;
+    public KeyCode backKey = KeyCode.DownArrow;
+    public KeyCode leftKey = KeyCode.LeftArrow;
+    public KeyCode rightKey = KeyCode.RightArrow;
 
     private Rigidbody2D rb;
 
@@ -16,20 +22,21 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Update radi!");
+        float rotateInput = 0f;
+        if (Input.GetKey(leftKey)) rotateInput = 1f;
+        if (Input.GetKey(rightKey)) rotateInput = -1f;
 
-        // Proveri input za Player 1 (strelice)
-        float moveInput = Input.GetAxis("Vertical");     // ↑↓
-        float rotateInput = Input.GetAxis("Horizontal"); // ←→
-
-        Debug.Log("Move input: " + moveInput);
-
-        // Rotacija
-        float rotation = -rotateInput * rotationSpeed * Time.deltaTime;
+        float rotation = rotateInput * rotationSpeed * Time.deltaTime;
         transform.Rotate(0, 0, rotation);
 
         // Kretanje
+        float moveInput = 0f;
+        if (Input.GetKey(forwardKey)) moveInput = 1f;
+        if (Input.GetKey(backKey)) moveInput = -1f;
+
         Vector2 moveDirection = transform.up * moveInput * moveSpeed;
         rb.linearVelocity = moveDirection;
     }
+
+
 }
