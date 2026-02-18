@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 40202ce88d4d1d34c86f0c7b1d374fd5
+guid: bf35038525730754e8edc32be2cb8cb4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5251503556281095912
-    second: Prase-04_0
+      213: -3279924140412917431
+    second: pixelPrase-04_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Prase-04_0
+      name: pixelPrase-04_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8e6d5d829a611e840800000000000000
-      internalID: 5251503556281095912
+      spriteID: 949a5704f5e5b72d0800000000000000
+      internalID: -3279924140412917431
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Prase-04_0: 5251503556281095912
+      pixelPrase-04_0: -3279924140412917431
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
