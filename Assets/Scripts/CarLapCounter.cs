@@ -23,7 +23,6 @@ public class CarLapCounter : MonoBehaviour
     bool isHideRoutineRunning = false;
     float hideUIDelayTime;
 
-
     //Events
     public event Action<CarLapCounter> OnPassCheckpoint;
 
@@ -36,31 +35,11 @@ public class CarLapCounter : MonoBehaviour
     {
         return numberOfPassedCheckpoints;
     }
+
     public float GetTimeAtLastCheckPoint()
     {
         return timeAtLastPassedCheckPoint;
     }
-
-    IEnumerator ShowPositionCO(float delayUntilHidePosition)
-    {
-        hideUIDelayTime += delayUntilHidePosition;
-
-        carPositionText.text = carPosition.ToString();
-
-        carPositionText.gameObject.SetActive(true);
-
-        if (!isHideRoutineRunning)
-        {
-            isHideRoutineRunning = true;
-
-            yield return new WaitForSeconds(hideUIDelayTime);
-            carPositionText.gameObject.SetActive(false);
-
-            isHideRoutineRunning = false;
-        }
-
-    }
-
 
     void OnTriggerEnter2D(Collider2D collider2D)
     {
@@ -91,14 +70,9 @@ public class CarLapCounter : MonoBehaviour
                         isRaceCompleted = true;
                 }
 
-
                 //Invoke the passed checkpoint event
                 OnPassCheckpoint?.Invoke(this);
 
-                //Now show the cars position as it has been calculated
-                if (isRaceCompleted)
-                    StartCoroutine(ShowPositionCO(100));
-                else StartCoroutine(ShowPositionCO(1.5f));
             }
         }
     }
