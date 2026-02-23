@@ -8,13 +8,16 @@ public class PositionHandler : MonoBehaviour
     private CarLapCounter car1;
     private CarLapCounter car2;
 
+    //Other components
+    LeaderboardUIHandler leaderboardUIHandler;
+
     public List<CarLapCounter> carLapCounters;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         //Get all Car lap counters in the scene. 
-        CarLapCounter[] carLapCounterArray = FindObjectsOfType<CarLapCounter>();
+        CarLapCounter[] carLapCounterArray = FindObjectsByType<CarLapCounter>(FindObjectsSortMode.None); ;
 
         //Store the lap counters in a list
         carLapCounters = carLapCounterArray.ToList<CarLapCounter>();
@@ -22,8 +25,17 @@ public class PositionHandler : MonoBehaviour
         //Hook up the pased checkpoint event
         foreach (CarLapCounter lapCounters in carLapCounters)
             lapCounters.OnPassCheckpoint += OnPassCheckpoint;
+
+        //Get the leaderboard UI handler
+        leaderboardUIHandler = FindAnyObjectByType<LeaderboardUIHandler>();
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        //Ask the leaderboard handler to update the list
+        leaderboardUIHandler.UpdateList(carLapCounters);
+    }
 
     void OnPassCheckpoint(CarLapCounter carLapCounter)
     {
@@ -36,5 +48,7 @@ public class PositionHandler : MonoBehaviour
         //Tell the lap counter which position the car has
         carLapCounter.SetCarPosition(carPosition);
 
+        //Ask the leaderboard handler to update the list
+        leaderboardUIHandler.UpdateList(carLapCounters);
     }
 }
