@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b6c6609a3102c45ae934cc4fe487dd, type: 3}
+  m_Name: 1_Ferrari
+  m_EditorClassIdentifier: Assembly-CSharp::CarData
+  carUniqueID: 0
+  carUISprite: {fileID: -1333439504715762810, guid: a549899cf984fc34687a0288e70f5374, type: 3}
+  carPrefab: {fileID: 8096049918145735768, guid: c91da2ad2767bf74f83d91d73707d691, type: 3}

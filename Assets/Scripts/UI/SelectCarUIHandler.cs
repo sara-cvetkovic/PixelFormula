@@ -13,6 +13,9 @@ public class SelectCarUIHandler : MonoBehaviour
 
     bool isChangingCar = false;
 
+    //Other components
+    CarUIHandler carUIHandler = null;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,18 +25,23 @@ public class SelectCarUIHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.LeftArrow) && !isChangingCar)
+        {
+            StartCoroutine(SpawnCarCO(true));
+        }
     }
 
     IEnumerator SpawnCarCO(bool isCarAppearingOnRightSide)
     {
         isChangingCar = true;
 
-
+        if (carUIHandler != null)
+            carUIHandler.StartCarExitAnimation(!isCarAppearingOnRightSide);
 
         GameObject instantiatedCar = Instantiate(carPrefab, spawnOnTransform);
 
-        
+        carUIHandler = instantiatedCar.GetComponent<CarUIHandler>();
+        carUIHandler.StartCarEntranceAnimation(isCarAppearingOnRightSide);
 
         yield return new WaitForSeconds(0.4f);
 

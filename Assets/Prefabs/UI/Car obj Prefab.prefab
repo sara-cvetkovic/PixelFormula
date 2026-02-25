@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 1626308294647513899}
   - component: {fileID: 844328076752069590}
   - component: {fileID: 850078665617496709}
+  - component: {fileID: 44456871086093750}
   m_Layer: 5
   m_Name: Car obj Prefab
   m_TagString: Untagged
@@ -174,3 +175,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &44456871086093750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6399111782256875999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa50e0a39dd1b8c46a6120972b1d9d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarUIHandler
