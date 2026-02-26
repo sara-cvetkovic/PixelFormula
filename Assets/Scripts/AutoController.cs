@@ -91,6 +91,15 @@ public class bgigli : MonoBehaviour
     public void SetInputVector(Vector2 inputVector)
     {
         steeringInput = inputVector.x;
+        if(inputVector.y!=accelerationInput)
+        {
+            if (inputVector.y > 0)
+                Mediator.Instance.NotifyPlayerAction(this.gameObject, PlayerAction.ACCELERATE);
+            else if (inputVector.y < 0)
+                Mediator.Instance.NotifyPlayerAction(this.gameObject, PlayerAction.REVERSE);
+            else
+                Mediator.Instance.NotifyPlayerAction(this.gameObject, PlayerAction.DECELERATE);
+        }
         accelerationInput = inputVector.y;
     }
 }

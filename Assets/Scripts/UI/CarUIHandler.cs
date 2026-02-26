@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CarUIHandler : MonoBehaviour
 {
+    [Header("Car details")]
+    public Image carImage;
 
     //Other components
     Animator animator = null;
@@ -15,6 +18,11 @@ public class CarUIHandler : MonoBehaviour
     void Start()
     {
         
+    }
+
+    public void SetupCar(CarData carData)
+    {
+        carImage.sprite = carData.CarUISprite;
     }
 
     public void StartCarEntranceAnimation(bool isAppearingOnRightSide)

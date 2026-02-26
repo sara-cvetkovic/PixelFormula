@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CarData
   carUniqueID: 1
   carUISprite: {fileID: -3188702180127858350, guid: 8feff4527abdcf14b823abad34a358d4, type: 3}
-  carPrefab: {fileID: 8096049918145735768, guid: c91da2ad2767bf74f83d91d73707d691, type: 3}
+  carPrefab: {fileID: 5882979117579628610, guid: bfeab91a140ca4c42905fd64406eba95, type: 3}
