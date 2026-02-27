@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56b6c6609a3102c45ae934cc4fe487dd, type: 3}
-  m_Name: 1_Ferrari
+  m_Name: 2_Redbull
   m_EditorClassIdentifier: Assembly-CSharp::CarData
-  carUniqueID: 0
-  carUISprite: {fileID: -1333439504715762810, guid: a549899cf984fc34687a0288e70f5374, type: 3}
-  teamLogoSprite: {fileID: 6496617944321358048, guid: 66917440626560149bb05af214560b0a, type: 3}
-  carPrefab: {fileID: 8096049918145735768, guid: c91da2ad2767bf74f83d91d73707d691, type: 3}
+  carUniqueID: 1
+  carUISprite: {fileID: 8785034863198750711, guid: fd1d8e8da3b45934494771c35aa1671d, type: 3}
+  teamLogoSprite: {fileID: -2609413596288839334, guid: 868458e803a18c44b90c17a1e0f648ae, type: 3}
+  carPrefab: {fileID: 5882979117579628610, guid: 0138d63183e2a1b4f9b32cd8309380cc, type: 3}

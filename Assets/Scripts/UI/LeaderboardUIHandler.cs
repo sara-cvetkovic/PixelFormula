@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,60 +5,63 @@ using UnityEngine.UI;
 public class LeaderboardUIHandler : MonoBehaviour
 {
     public GameObject leaderboardItemPrefab;
-
     SetLeaderboardItemInfo[] setLeaderboardItemInfo;
+    VerticalLayoutGroup leaderboardLayoutGroup;
 
-    void Awake()
+    public void Init()
     {
-        VerticalLayoutGroup leaderboardLayoutGroup = GetComponentInChildren<VerticalLayoutGroup>();
+        leaderboardLayoutGroup = GetComponentInChildren<VerticalLayoutGroup>();
 
-        //Get all Car lap counters in the scene. 
+        if (leaderboardLayoutGroup == null)
+        {
+            Debug.LogError("Nema VerticalLayoutGroup!");
+            return;
+        }
+
         CarLapCounter[] carLapCounterArray = FindObjectsByType<CarLapCounter>(FindObjectsSortMode.None);
 
-        // PROVERA: Da li postoji prefab?
         if (leaderboardItemPrefab == null)
         {
-            Debug.LogError("Leaderboard Item Prefab nije podešen u Inspektoru!");
+            Debug.LogError("Leaderboard Item Prefab nije podešen!");
             return;
         }
 
-        // PROVERA: Da li ima igrača u sceni?
         if (carLapCounterArray.Length == 0)
         {
-            Debug.LogWarning("Nema CarLapCounter objekata u sceni!");
+            Debug.LogWarning("Nema CarLapCounter objekata!");
             return;
         }
 
-        //Allocate the array
         setLeaderboardItemInfo = new SetLeaderboardItemInfo[carLapCounterArray.Length];
 
-        //Create the leaderboard items
         for (int i = 0; i < carLapCounterArray.Length; i++)
         {
-            //Set the position
             GameObject leaderboardInfoGameObject = Instantiate(leaderboardItemPrefab, leaderboardLayoutGroup.transform);
-
             setLeaderboardItemInfo[i] = leaderboardInfoGameObject.GetComponent<SetLeaderboardItemInfo>();
-
             setLeaderboardItemInfo[i].SetPositionText($"{i + 1}.");
         }
 
         Canvas.ForceUpdateCanvases();
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     public void UpdateList(List<CarLapCounter> lapCounters)
     {
-        //Create the leaderboard items
+        if (setLeaderboardItemInfo == null) return;
+
+        string p1Name = PlayerPrefs.GetString("SkracenoPlayer1");
+
         for (int i = 0; i < lapCounters.Count; i++)
         {
-            setLeaderboardItemInfo[i].SetDriverNameText(lapCounters[i].gameObject.name);
+            string carName = lapCounters[i].gameObject.name;
+            Debug.Log("carName: " + carName + " | p1Name: " + p1Name);
+            setLeaderboardItemInfo[i].SetDriverNameText(carName);
+
+            // P1 je onaj cije ime odgovara, P2 je drugi
+            string carKey = carName == p1Name ? "P1CAR" : "P2CAR";
+
+            CarData carData = Resources.Load<CarData>("CarData/" + PlayerPrefs.GetString(carKey));
+            if (carData != null)
+                setLeaderboardItemInfo[i].SetTeamLogo(carData.TeamLogoSprite);
         }
     }
 }

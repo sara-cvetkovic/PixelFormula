@@ -56,7 +56,7 @@ public class Mediator : MonoBehaviour
 
     public IEnumerator StartRaceRoutine(GameObject[] players, StartLight[] lights,float time = 1f)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         _globalAudio.PlayOneShot(StartSound, 2 * _sfxVolume / _musicVolume);
         yield return new WaitForSeconds(1f);
 
@@ -130,10 +130,13 @@ public class Mediator : MonoBehaviour
         GameObject go = new GameObject("GlobalSound");
         go.transform.SetParent(this.transform);
 
-        _globalAudio = go.AddComponent<AudioSource>();
-        _globalAudio.clip = Music;
-        _globalAudio.volume = _musicVolume;
-        _globalAudio.loop = true;
+        if (_globalAudio == null)
+        {
+            _globalAudio = go.AddComponent<AudioSource>();
+            _globalAudio.clip = Music;
+            _globalAudio.volume = _musicVolume;
+            _globalAudio.loop = true; 
+        }
         
 
         for (uint i = 0; i < playerCount; i++)

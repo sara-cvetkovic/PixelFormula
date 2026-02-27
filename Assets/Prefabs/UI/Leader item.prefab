@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -65.5, y: 0}
-  m_SizeDelta: {x: 37.8126, y: 43.7758}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6497756542822965766
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6496617944321358048, guid: 66917440626560149bb05af214560b0a, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -109,8 +109,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 33.55593, y: 1.6385}
-  m_SizeDelta: {x: 138.7035, y: 25}
+  m_AnchoredPosition: {x: 59.555923, y: 1.6385}
+  m_SizeDelta: {x: 86.7035, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &801117550506215037
 CanvasRenderer:
@@ -540,3 +540,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SetLeaderboardItemInfo
   positionText: {fileID: 3316102414511747534}
   driverNameText: {fileID: 8890289209250443692}
+  teamLogoImage: {fileID: 7748026016848326011}

@@ -52,6 +52,7 @@ public class SelectCarUIHandler : MonoBehaviour
     {
         if (isChangingCar) return false;
         PlayerPrefs.SetString(PlayerPrefsKey, carDatas[selectedCarIndex].name);
+
         return true;
     }
    

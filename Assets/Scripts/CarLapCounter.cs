@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CarLapCounter : MonoBehaviour
@@ -14,7 +15,7 @@ public class CarLapCounter : MonoBehaviour
     int numberOfPassedCheckpoints = 0;
 
     int lapsCompleted = 0;
-    const int lapsToComplete = 2;
+    const int lapsToComplete = 1;
 
     bool isRaceCompleted = false;
 
@@ -41,24 +42,26 @@ public class CarLapCounter : MonoBehaviour
         return timeAtLastPassedCheckPoint;
     }
 
+    public int GetLapsCompleted() => lapsCompleted;
+    public int GetLapsToComplete() => lapsToComplete;
+
     void OnTriggerEnter2D(Collider2D collider2D)
     {
         if (collider2D.CompareTag("CheckPoint"))
         {
-            //Once a car has completed the race we don't need to check any checkpoints or laps. 
+
             if (isRaceCompleted)
+            {
+                Debug.Log("Trka vec zavrsena, ignorisem");
                 return;
+            }
 
             CheckPoint checkPoint = collider2D.GetComponent<CheckPoint>();
 
-            //Make sure that the car is passing the checkpoints in the correct order. The correct checkpoint must have exactly 1 higher value than the passed checkpoint
             if (passedCheckPointNumber + 1 == checkPoint.checkPointNumber)
             {
                 passedCheckPointNumber = checkPoint.checkPointNumber;
-
                 numberOfPassedCheckpoints++;
-
-                //Store the time at the checkpoint
                 timeAtLastPassedCheckPoint = Time.time;
 
                 if (checkPoint.isFinishLine)
@@ -67,13 +70,23 @@ public class CarLapCounter : MonoBehaviour
                     lapsCompleted++;
 
                     if (lapsCompleted >= lapsToComplete)
+                    {
                         isRaceCompleted = true;
+                        PlayerPrefs.SetString("Pobednik", PlayerPrefs.GetString(
+                            gameObject.name == PlayerPrefs.GetString("SkracenoPlayer1") ? "SkracenoPlayer1" : "SkracenoPlayer2"));
+                        PlayerPrefs.Save();
+                        StartCoroutine(LoadNextSceneDelay());
+                    }
                 }
 
-                //Invoke the passed checkpoint event
                 OnPassCheckpoint?.Invoke(this);
-
             }
         }
+    }
+
+    IEnumerator LoadNextSceneDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Rezultat");
     }
 }

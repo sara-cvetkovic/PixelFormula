@@ -9,7 +9,9 @@ public class RaceStart : MonoBehaviour
     void Start()
     {
         InitiateCars();
-        Mediator.Instance.StartRace();  
+        FindAnyObjectByType<LeaderboardUIHandler>().Init();
+        FindAnyObjectByType<PositionHandler>().Init();
+        Mediator.Instance.StartRace();
     }
 
     private void InitiateCars()
@@ -25,6 +27,8 @@ public class RaceStart : MonoBehaviour
         p2.GetComponent<bgigli>().rotationAngle = PlayerStartingRotations[1];
         p1.GetComponent<CarInputHandler>().SetControls(KeyCode.W,KeyCode.A,KeyCode.S,KeyCode.D).transform.SetPositionAndRotation(PlayerStartingPostions[0],Quaternion.Euler(0,0, PlayerStartingRotations[0]));
         p2.GetComponent<CarInputHandler>().SetControls(KeyCode.UpArrow, KeyCode.LeftArrow, KeyCode.DownArrow, KeyCode.RightArrow ).transform.SetPositionAndRotation(PlayerStartingPostions[1], Quaternion.Euler(0, 0, PlayerStartingRotations[1]));
+        p1.name = PlayerPrefs.GetString("SkracenoPlayer1");
+        p2.name = PlayerPrefs.GetString("SkracenoPlayer2");
         Mediator.Instance.Connect(p1);
         Mediator.Instance.Connect(p2);
        
