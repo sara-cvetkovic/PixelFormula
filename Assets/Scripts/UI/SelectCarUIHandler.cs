@@ -11,6 +11,12 @@ public class SelectCarUIHandler : MonoBehaviour
     [Header("Spawn on")]
     public Transform spawnOnTransform;
 
+    [Header("Saves player's choice to...")]
+    public string PlayerPrefsKey;
+
+    [Header("Controls")]
+    public KeyCode Left, Right;
+
     bool isChangingCar = false;
 
     CarData[] carDatas;
@@ -32,17 +38,23 @@ public class SelectCarUIHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(Left))
         {
             OnPreviousCar();
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(Right))
         {
             OnNextCar();
         }
 
     }
-
+    public bool LockInChoice()
+    {
+        if (isChangingCar) return false;
+        PlayerPrefs.SetString(PlayerPrefsKey, carDatas[selectedCarIndex].name);
+        return true;
+    }
+   
     public void OnPreviousCar()
     {
         if (isChangingCar)

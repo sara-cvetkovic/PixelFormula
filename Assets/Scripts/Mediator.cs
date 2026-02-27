@@ -61,10 +61,10 @@ public class Mediator : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         float _t = 0;
-        for(int i =lights.Length-1; i >=0; i--)
+        for(int i =0; i < lights.Length; i++)
         {
             _t = 0;
-            LightOn(lights[i]);
+            LightOn(lights,i);
             while (_t < time)
             {
                 yield return null;
@@ -97,9 +97,10 @@ public class Mediator : MonoBehaviour
         }
     }
 
-    private void LightOn(StartLight light)
+    private void LightOn(StartLight[] lights,int id)
     {
-        light.TurnOn();
+        foreach (StartLight light in lights)
+            if (light.Id == id) light.TurnOn();
     }
 
     private void Init()
@@ -174,6 +175,18 @@ public class Mediator : MonoBehaviour
 
         }
 
+    }
+
+    public void Connect(GameObject sender)
+    {
+        if (_playerAudioSourceMapper.ContainsKey(sender)) return;
+       var go = new GameObject($"PlayerSound");
+        go.transform.SetParent(sender.transform);
+        AudioSource newSource = sender.AddComponent<AudioSource>();
+        newSource.volume = _sfxVolume;
+        newSource.clip = EngineSound;
+        newSource.loop = true;
+        _playerAudioSourceMapper.Add(sender, newSource);
     }
 
     private void Reverse(GameObject carObject, AudioSource source)

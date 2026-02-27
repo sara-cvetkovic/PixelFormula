@@ -3,7 +3,7 @@ using UnityEngine;
 public class StartLight : MonoBehaviour
 {
     public Sprite On, Off;
-
+    public int Id;
     public void TurnOn()
     {
 

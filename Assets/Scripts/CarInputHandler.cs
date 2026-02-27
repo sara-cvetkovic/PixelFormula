@@ -16,6 +16,8 @@ public class CarInputHandler : MonoBehaviour
         CarControler = GetComponent<bgigli>();
     }
 
+    public CarInputHandler SetControls(KeyCode up, KeyCode left, KeyCode down, KeyCode right) { upKey = up;leftKey = left;downKey = down;rightKey = right; return this; }
+
     void Update()
     {
         Vector2 inputVector = Vector2.zero;

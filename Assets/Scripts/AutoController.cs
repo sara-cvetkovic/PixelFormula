@@ -14,7 +14,7 @@ public class bgigli : MonoBehaviour
     float accelerationInput = 0;
     float steeringInput = 0;
 
-    float rotationAngle = 0;
+    public float rotationAngle = 0;
 
     float velocityVsUp = 0;
 

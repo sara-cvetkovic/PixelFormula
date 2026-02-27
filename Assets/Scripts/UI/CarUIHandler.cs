@@ -5,6 +5,7 @@ public class CarUIHandler : MonoBehaviour
 {
     [Header("Car details")]
     public Image carImage;
+ 
 
     //Other components
     Animator animator = null;
@@ -12,16 +13,21 @@ public class CarUIHandler : MonoBehaviour
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        
+        carImage = GetComponent<Image>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
+         
     }
 
     public void SetupCar(CarData carData)
     {
+         
+         
         carImage.sprite = carData.CarUISprite;
     }
 
